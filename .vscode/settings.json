@@ -52,6 +52,10 @@
         "stdexcept": "cpp",
         "streambuf": "cpp",
         "thread": "cpp",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "segment_csr_cuda.h": "c",
+        "index_info.cuh": "c",
+        "reducer.cuh": "c",
+        "utils.cuh": "c"
     }
 }

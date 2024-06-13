@@ -1,0 +1,7 @@
+venv
+build
+.vscode
+celeritas.egg-info
+*.o
+*.so
+*.zip

@@ -6,7 +6,7 @@ cmake_policy(SET CMP0048 NEW)
 project(celeritas VERSION 0.1 LANGUAGES CXX)
 
 include(FindPackageHandleStandardArgs)
-
+set("CMAKE_CUDA_COMPILER"  "/usr/local/cuda/bin/nvcc")
 add_compile_definitions(_GLIBCXX_USE_CXX11_ABI=0)
 
 if ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")

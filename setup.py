@@ -42,7 +42,6 @@ class CMakeBuild(build_ext):
 
         cmake_args += ["-DCMAKE_BUILD_WITH_INSTALL_RPATH=TRUE"]
         cmake_args += ["-DCMAKE_INSTALL_RPATH_USE_LINK_PATH=TRUE"]
-
         try:
             import torch
             if torch.cuda.is_available():
@@ -55,11 +54,13 @@ class CMakeBuild(build_ext):
             cmake_args.append('-DCMAKE_INSTALL_RPATH=@loader_path')
         else:  # values: linux*, aix, freebsd, ... just as well win32 & cygwin
             cmake_args.append('-DCMAKE_INSTALL_RPATH=$ORIGIN')
-
+        cmake_args.append("-DCMAKE_EXPORT_COMPILE_COMMANDS=ON")
+        cmake_args.append("-DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda-12.4/")
         env = os.environ.copy()
         env['CXXFLAGS'] = '{} -DVERSION_INFO=\\"{}\\"'.format(
             env.get('CXXFLAGS', ''),
             self.distribution.get_version())
+        env["NVCC"]="/usr/local/cuda/bin/nvcc"
 
         if not os.path.exists(self.build_temp):
             os.makedirs(self.build_temp)
